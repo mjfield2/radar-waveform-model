@@ -1,6 +1,6 @@
 # 2D Ground Penetrating Radar Simulation
 
-Andrew Hoffmann (@hoffmaao) converted the 2D radar simulation Matlab code from [this paper](https://www.sciencedirect.com/science/article/pii/S0098300405002621?casa_token=wbRlY4wIqoIAAAAA:yCFjd0qhQR6oV0vPRf1kLWQXJepc7GmzVVt8aIqN44Uio3zjoWd2OcKBIKXzb4vywFjAoHycuw) to Python. I've forked it to customize visualizations and tinker for my own purposes.
+Andrew Hoffmann (@hoffmaao) converted the 2D radar simulation Matlab code from [this paper](https://doi.org/10.1016/j.cageo.2005.11.006) to Python. I've forked it to customize visualizations and tinker for my own purposes.
 
 ### Some of my goals are to:
 * reproduce the figures from the paper
@@ -11,7 +11,7 @@ Andrew Hoffmann (@hoffmaao) converted the 2D radar simulation Matlab code from [
 
 ### Shot gather
 
-![image](./figures/one.shot.png)
+![image](./figures/one_shot.png)
 
 ### Common offset gather (radar profile)
 
@@ -19,4 +19,8 @@ Andrew Hoffmann (@hoffmaao) converted the 2D radar simulation Matlab code from [
 
 ### Wavefield animation
 
-![](./one_shot_wav.mp4)
+![](./one_shot_wav.gif)
+
+### Shot gather animation
+
+
