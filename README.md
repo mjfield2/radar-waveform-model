@@ -19,7 +19,7 @@ Andrew Hoffmann (@hoffmaao) converted the 2D radar simulation Matlab code from [
 
 ### Wavefield animation
 
-![](./one_shot_wav.gif)
+![animation](./one_shot_wav.gif)
 
 ### Shot gather animation
 
