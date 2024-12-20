@@ -23,4 +23,4 @@ Andrew Hoffmann (@hoffmaao) converted the 2D radar simulation Matlab code from [
 
 ### Shot gather animation
 
-
+![animation](./figures/shots.gif)
