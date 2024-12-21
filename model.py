@@ -392,7 +392,7 @@ def TM_model2d(ep, mu, sig, xprop, zprop, srcloc, recloc, srcpulse, t, npml, out
                     gather[(it - 1) // outstep, r, s - 1] = Ey[reci[r], recj[r]]
     return gather, tout, srcx, srcz, recx, recz
 
-def TM_model2d_custom(ep, mu, sig, xprop, zprop, srcloc, recloc, srcpulse, t, npml, outstep=1, plotopt=[1, 50, 0.05], quiet=False, save_wav=False):
+def TM_model2d_custom(ep, mu, sig, xprop, zprop, srcloc, recloc, srcpulse, t, npml, outstep=1, plotopt=[1, 50, 0.05], quiet=False, save_wav=True):
     if len(plotopt) == 2:
         plotopt.append(0.05)
 
@@ -458,7 +458,7 @@ def TM_model2d_custom(ep, mu, sig, xprop, zprop, srcloc, recloc, srcpulse, t, np
     tout = np.zeros(int((numit - 1) / outstep))
 
     # make cache for wavefield
-    if sav_wav==True:
+    if save_wav==True:
         n_out = 0
         for it in range(numit):
             if (it - 1) % plotopt[1] == 0:
@@ -531,8 +531,8 @@ def TM_model2d_custom(ep, mu, sig, xprop, zprop, srcloc, recloc, srcpulse, t, np
         iii = srci[s]
         jjj = srcj[s]
         #print(f'index: {(iii, jjj)}')
-        print(f'source #: {s+1}')
-        print(f'source position: x = {srcx[s]:.1f}, z = {srcz[s]:.1f}')
+        # print(f'source #: {s+1}')
+        # print(f'source position: x = {srcx[s]:.1f}, z = {srcz[s]:.1f}')
         # zero all field matrices
         Ey = np.zeros((nx - 1, nz - 1))  # Ey component of electric field
         Hx = np.zeros((nx - 1, nz))  # Hx component of magnetic field
@@ -642,7 +642,7 @@ def TM_model2d_custom(ep, mu, sig, xprop, zprop, srcloc, recloc, srcpulse, t, np
 
 
             # plot the Ey wavefield if necessary
-            if (sav_wav==True) & (plotopt[0] == 1):
+            if (save_wav==True) & (plotopt[0] == 1):
                 if (it - 1) % plotopt[1] == 0:
                     #print(f"Source {s+1}/{nsrc}, Iteration {it}/{numit}, t = {t[it-1]*1e9:.2f} ns")
                     wav_cache[s, out_counter, ...] = Ey.T
@@ -656,7 +656,10 @@ def TM_model2d_custom(ep, mu, sig, xprop, zprop, srcloc, recloc, srcpulse, t, np
                 for r in range(nrec):
                     gather[(it - 1) // outstep, r, s - 1] = Ey[reci[r], recj[r]]
 
-            pbar.set_description(f"Source {s+1}/{nsrc}, t = {t[it-1]*1e9:.2f} ns")
-            
-    return gather, tout, srcx, srcz, recx, recz, wav_cache
+            pbar.set_description(f"Source {s+1}/{nsrc}, x = {srcx[s]:.1f}, z = {srcz[s]:.1f}, t = {t[it-1]*1e9:.2f} ns")
+
+    if save_wav==True:
+        return gather, tout, srcx, srcz, recx, recz, wav_cache
+    else:
+        return gather, tout, srcx, srcz, recx, recz
 
